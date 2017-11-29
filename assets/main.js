@@ -53,7 +53,7 @@ function validateCharacter(id, coords) {
   };
 
   $.ajax({
-    url: 'http://localhost:4567/post',
+    url: 'https://obscure-garden-25623.herokuapp.com/post', //'http://localhost:4567/post',
     type: 'POST',
     data: JSON.stringify(tag),
     contentType: "application/json",
