@@ -1,5 +1,5 @@
 require 'sinatra'
-require "sinatra/reloader"
+# require "sinatra/reloader"
 require 'json'
 
 correct_positions = { 'waldo' => [0.11, 0.83],
