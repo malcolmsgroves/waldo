@@ -100,26 +100,24 @@ $(function() {
   setWindowListener();
   setImageListener();
   setDropdownListener();
-  setHighlight();
 });
 
-function setHighlight() {
-  jQuery.fn.highlight = function(alert) {
-    let color = (alert == 'success') ? '#7DDA77' : '#DA7877';
-    $(this).each(function() {
-      var el = $(this);
-      el.before("<div/>");
-      el.prev()
-      .width(el.width())
-      .height(el.height())
-      .css({
-          "position": "absolute",
-          "background-color": color,
-          "opacity": ".9"
-      })
-      .fadeOut(500);
-    });
-  }
+
+jQuery.fn.highlight = function(alert) {
+  let color = (alert == 'success') ? '#7DDA77' : '#DA7877';
+  $(this).each(function() {
+    var el = $(this);
+    el.before("<div/>");
+    el.prev()
+    .width(el.width())
+    .height(el.height())
+    .css({
+        "position": "absolute",
+        "background-color": color,
+        "opacity": ".9"
+    })
+    .fadeOut(500);
+  });
 }
 
 function found(id) {

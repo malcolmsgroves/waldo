@@ -10,7 +10,8 @@ h1 {
   width: 100%;
   margin: 0;
   padding: 0;
-  cursor: crosshair; }
+  cursor: crosshair;
+  clear: both; }
 
 /* DROPDOWN SELECTION LIST */
 .dropdown {
