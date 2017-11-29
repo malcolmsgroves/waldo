@@ -40,4 +40,10 @@ h1 {
     border-bottom: 10px solid white;
     margin: auto; }
 
+.name {
+  color: red;
+  margin-right: 15px;
+  font-size: 20px;
+  float: left; }
+
 /*# sourceMappingURL=styles.css.map */

@@ -47,19 +47,29 @@ function checkPosition(id) {
 
 function validateCharacter(id, coords) {
   let corrPos;
-  console.log(coords);
-  switch(id) {
-    case 'waldo':
-      corrPos = [0.11, 0.83];
-      break;
-    case 'bat':
-      corrPos = [0.47, 0.17];
-      break;
-    case 'centaur':
-      corrPos = [0.78, 0.66];
-      break;
-  }
+  let tag = {
+    id: id,
+    coords: coords,
+  };
 
+  $.ajax({
+    url: 'http://localhost:4567/post',
+    type: 'POST',
+    data: JSON.stringify(tag),
+    contentType: "application/json",
+    dataType: "json",
+  }).done(function(data) {
+    if(data.valid) {
+      found(id);
+    }
+    else {
+      $('#waldo_image').highlight('failure');
+    }
+    console.log('Response: ' + data.valid);
+  }).fail(function( jqXHR, textStatus ) {
+    alert( "Request failed: " + textStatus + jqXHR );
+  });
+/*
   if(corrPos && closeEnough(corrPos, coords)) {
     console.log('close enough');
     $('#waldo_image').highlight('success');
@@ -67,6 +77,7 @@ function validateCharacter(id, coords) {
   else {
     $('#waldo_image').highlight('failure');
   }
+  */
 }
 
 function closeEnough(pos1, pos2) {
@@ -95,4 +106,9 @@ jQuery.fn.highlight = function(alert) {
     })
     .fadeOut(500);
   });
+}
+
+function found(id) {
+  $(`#${id}`).css( { color: 'green' } );
+  $('#waldo_image').highlight('success');
 }
