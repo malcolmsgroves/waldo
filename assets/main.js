@@ -47,6 +47,20 @@ function checkPosition(id) {
 
 function validateCharacter(id, coords) {
   let corrPos;
+  switch(id) {
+    case 'waldo':
+      corrPos = [0.11, 0.83];
+      break;
+    case 'bat':
+      corrPos = [0.47, 0.17];
+      break;
+    case 'centaur':
+      corrPos = [0.78, 0.66];
+      break;
+    case 'mat':
+      corrPos = [0.73, 0.53];
+      break;
+  }
   let tag = {
     id: id,
     coords: coords,
@@ -67,17 +81,14 @@ function validateCharacter(id, coords) {
     }
     console.log('Response: ' + data.valid);
   }).fail(function( jqXHR, textStatus ) {
-    alert( "Request failed: " + textStatus + jqXHR );
+    if(corrPos && closeEnough(corrPos, coords)) {
+      console.log('close enough');
+      found(id);
+    }
+    else {
+      $('#waldo_image').highlight('failure');
+    }
   });
-/*
-  if(corrPos && closeEnough(corrPos, coords)) {
-    console.log('close enough');
-    $('#waldo_image').highlight('success');
-  }
-  else {
-    $('#waldo_image').highlight('failure');
-  }
-  */
 }
 
 function closeEnough(pos1, pos2) {
